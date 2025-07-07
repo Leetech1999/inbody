@@ -1,0 +1,1256 @@
+ 리액트
+    컴포넌트단위 부위별(섹션) 관리 / 부위변환으로 페이지 이동처럼 데이터 처리 가능
+ Single Page Application ---- js ( react, vue, angular )
+
+ Node.js --> LTS
+   VS CODE 터미널 ( powershell --> command prompt 교체 )
+
+   프로젝트 폴더생성 전
+     npx create-react-app project이름
+     cd project이름
+
+
+
+
+
+
+
+	https://nodejs.org/ko ----> 최신버전 설치( LTS )
+
+	Terminal ( powershell --> cmd( Command Prompt )  변경 )
+   	 npm -g install create-react-app 입력
+
+	프로젝트 생성
+   	 npx create-react-app 프로젝트명 ( npx create-react-app react_basic1 )
+  	  cd 프로젝트명 ( 폴더 열기 )
+  	  cd.. ( 상위 폴더 )
+
+
+  	  미리보기 npm start ---> 미리보기 종료 ctrl + "c" (mac: npm run start)
+  	  배포물 제작 npm run build ( build폴더 작성 )
+
+ 	  변수 ---> state , 변수값 변경 useState() 필수
+
+
+1.    https://nodejs.org ---> 최신버전 LTS 다운로드 --> 설치
+
+2.    VSCODE > 터미널 > 새 터미널 ( powershell 에서 Command Prompt 교체 )
+
+3.    npm -g install create-react-app : 리액트 설치
+
+4.    리액트 프로젝트 -- npx create-react-app 프로젝트명 ( 폴더 생성, 설치 )
+                                 npx create-react-app . ( 현재 폴더에 설치 )
+
+5.    프로젝트로 경로이동 -- cd 프로젝트명
+
+6. 라우터 설치 npm install react-router-dom     ( react router package 설치 )
+
+
+
+===============================================================================
+
+-- state ( 관리 데이터 상태 -- 변경되면 컴포넌트가 다시 렌더링 )
+
+import React, {useState} from 'react';
+
+function​ ~(){
+
+let [state, setState] = useState(초기값);
+
+}
+
+      import { useState } from 'react'
+...
+      let [state변수명, 변경함수명] = useState(기본값)
+...
+      tag ... { state변수명 }  ---- { script관련 명령 }
+
+===========================================================
+
+import './App.css';
+
+import React, { useState } from 'react';
+
+​===========================================================
+
+...(spead 연산자 ) / map()
+...배열-->배열데이터를 독립데이터로
+const ar1 = [1,2,3]
+const ar2 = [...ar1] ---> [1,2,3]
+--------------------------------
+const ar1 = [1,2]
+const ar2 = [3,4]
+const ar3 = [..ar1, ..ar2] --> [1,2,3,4]
+
+배열.map((인자) => { 인자값 변경 }) --> 기존배열요소를 순환, 실행 후 새로운 배열로
+const array = [1,2,3,4]
+const array2 = array.map((num)=>[num*2}) --> array2 = [2,4,6,8]
+
+=================================================================
+
+const Array = [1,2,3]
+const Array2 = Array.map((num)+>{num*2});
+** jsx(react)에서 map함수 배열 생성시 반드시 key값 선언 **
+result ----> Array2=[2,4,6]
+-----------------------------------------------------
+const Array =[1,2,3]
+const Array2 = [...Array]
+------------------------------------------------------
+const Array = [1,2,3]
+const odds = Array.filter(num+>num%2!==0)
+result ----> odds = [1,3]
+
+=======================================================
+React --- UI구축 자바스크립트 라이브러리 ( 페이스북 개발 )
+
+ -- 컴포넌트 기반( 재사용성, 유지보수 )
+
+ -- JSX 문법 ( js + html 결합 형태 )
+
+ -- 부모 > 자식 컴포넌트 ----> 단방향 데이터 흐름
+
+ -- 함수형 컴포넌트 ( Hooks )
+
+ -- SPA 개발( Single Page Application )
+
+​
+
+1. useState : 변수상태 관리, 변경함수 정의 -- 렌더링 실행
+
+   import { useState } from 'react'
+
+   ...
+
+   const [state, setState] = useState( initValue )
+
+  ex) const [like, setLike] = useState(0)
+
+       <span onClick={()=>{ setState( state+1) } }>{state}-좋아요</span>
+
+​
+
+2. props : 부모 컴포넌트가 자식 컴포넌트에 데이터 전달할 수 있는 임의 속성
+
+​
+
+   <자식 컴포넌트 propName1={value}  propName2={value} />
+
+   .. 자식컴포넌트.js
+
+     function 자식컴포넌트(props){
+
+         .... <tag>{ props.propName1 }</tag>
+
+         .... <tag>{ props.propName2 }</tag>
+
+     }
+
+ 
+
+3. React-router​ : 클라이언트 사이트 라우팅 구현
+
+  step1 :  npm install react-router-dom 
+
+  step2 :  index.js
+
+             import { BrowserRouter } from 'react-router-dom'
+
+             <React.StrickMode>
+
+                 <BrowserRouter>
+
+                     <App />
+
+                 </BrowserRouter>
+
+             </React.StrickMode>
+
+  step3 :  App.js
+
+             import { Routes, Route, Link, useNavigate, useParams } from 'react-router-dom'​
+
+             ....
+
+             <Routes>
+
+                 <Route path="/경로1" element={ <Component1 /> } />
+
+                 <Route path="/경로2" element={ <Component2 /> } />
+
+             </Routes> --- Routes공간에 경로에 맞는 Route하나만 렌더링 처리
+
+             경로 = "/" : 첫 페이지( index )
+
+             ----------------------------------------------------------------------------
+
+             .. <Link to="경로"> link </Link>  -  지정경로 라우팅( 링크연결 )
+
+             .. const navigate = useNavigate();
+
+               return( ...  <tag onClick={()=>{ navigate('경로') }}>~</tag>
+
+             ----------------------------------------------------------------------------
+
+             경로 : "/path/:id"  ----- 가변 id값 인식 <----   useParams필요
+
+             자식 컴포넌트.js
+
+                 import { useParams } from "react-router-dom"
+
+                 function 자식컴포넌트(){
+
+                      const {id} = useParams();
+
+                      return( ....  <tag>  ... {id}  </tag>  )...
+
+
+==============================================================
+Header
+-------------------------------------
+모바일(product/10414), <Link to ="/product/10414">
+태블릿(product/10415),
+웨어러블(product/10461)
+-------------------------------------
+Product -- 이미지 교체 출력 :id 구분
+    :id값 인식 import {useParams} from 'react-router-dom'
+    const images = {
+        10414:'/images/smartphone.jpg',
+        10415:'/images/tabelt.jpg',
+        10461:'/images/werable.jpg'
+    }
+    ...
+    const{id} = useParams();
+    <img src={ images[id] }.../ >
+-------------------------------------
+Footer
+
+
+=======================================================
+
+useState( 변수 상태관리 hook -- 값 변경시 재 랜더링 ) --- 무한반복 렌더링
+useEffect( 렌더링 이후 특정작업 실행 hook )
+    useEffect(()=>{ code }, [의존성배열])
+        : 의존성배열의 값이 변경시에만 코드 실행
+ --- 데이터 가져오기
+    useEffect(()=>{ data load }, [] ) 의존성배열 비운상태로 최초 1번만 실행(data mount)
+    useEffect(()=>{....}, [의존성] ) 의존성 데이터 변경시 실행( data update - data save )
+    useEffect(()=>{ return ()=> {...} }, [] ) Component Unmout
+
+
+달력 만들기 ---
+해당 월 파악 , 1일의 요일 분석
+now = new Date()
+now.getFullYear() , getDate():현재날짜, getMonth()+1 : 현재 월
+new Date(year,month+1,date) new Date(2025,4,0) 4월 이전달 마지막 일 : 월에 맞는 일자 추출
+new Date(year,month+1,date).getDay -- 요일 순번     new Date(2025,4,1).getDay() : 요일 파악(순서)
+
+Array(1일요일 순서 = 빈칸갯수) ---> const blanks = Array(2).fill(null);
+5월 전 달 마지막날짜 파악 ( new Data(2025,5,0) --> 30 ), 반복
+const currentDays = Array.from( { length:날짜파악 },(_,i)=>i+1);
+
+const days = [...blanks, ...currentDays]
+
+<div className = "days"> -- .days{ display:grid; grid-template-columns:repeat(7,1fr); }
+    days.map((day, idx)=>(<div key={idx}>{day}</div>))
+
+</div>
+
+=============================================================
+
+styled components -- 설치
+
+1. 터미널 -- 해당 프로젝트로 경로이동
+2. npm install styled-components
+
+3. import styled from 'styled-components';
+    const Comp = styled.tag`
+        style-prop:value;
+        prop:${ props => ... }
+        &:hover{ prop:value; }
+    `;
+4. router ---> 페이지 이동 ( useNavigate )
+    import { useNavigate } from 'react-router-dom'
+    ...
+    const navigate = useNavigate()
+
+        navigate('/~');
+        navigate(-1) ---- 뒤로가기
+        navigate(1) ---- 앞으로 가기
+        navigate('/~', { state:{....} })
+        navigate('/login', { replace:true } ) ---- 히스토리 교체
+        navigate('/user/${userId})
+
+캘린더 + todo
+날짜선택
+
+
+======================================================
+
+npm install react-ransition-group
+
+SVGMap.js
+
+<div className="container">
+    { floor.svg() 
+</div>
+
+====================================================================
+
+React Bootstrap 라이브러리
+
+1. install
+   npm install react-bootstrap bootstrap
+
+2. css import ( App.js / Index.js )
+   import 'bootstrap/dist/css/bootstrap.css';
+
+3. Grid System
+   import { Container, Row, Col }from 'react-bootstrap';
+   /* xs(576이하),sm(576이상), md(768), lg(992), xl(1200), xxl(1400) */
+   <Container> <Container fluid>
+     <Row>
+       <Col></Col> <Col xs={12} md={n} lg={}>
+
+4. Navigation
+   import { Navbar, Nav }from 'react-bootstrap';
+    variant="primary, secomdary, success, danger, warning, info, light, dark, link"
+
+   <Navbar>
+     <Navbar.Brand href="~">Logo</Navbar.Brand>
+     <Navbar.Toggle/>
+     <Navbar.Collapse>
+        <Nav>
+           <Nav.Link href="#">~</Nav.Link>
+           <NavDropdown>
+
+5. import { Modal, Button, Form, Card, Alert } from 'react-bootstrap'
+   
+   <Button variant="primary" onClick={}>Click Button </Button>
+
+   <Card>
+    <Card.Img src="~"/>
+    <Card.Body>
+      <Card.Title>~</Card.Title>
+      <Card.Text>~</Card.Text>
+      <Button>~</Button>
+    <Card.Body>
+   </Card>
+
+   <Modal>
+      <Modal.Header>
+          <Modal.Title>~</Modal.Title>
+      </Modal.Header>
+      <Modal.Body> ... </Modal.Body>
+      <Modal.Footer>
+            ...
+      </Modal.Footer>
+   </Modal>
+
+   <Form>
+    <Form.Group>
+     <Form.Label>~</Form.Label>
+     <Form.Control type="text, email, password" /> <Form.Check /> <Form.Select />
+     <Form.Text>
+    </Form.Group>
+    <Button type="submit, reset">~</Button>
+   </Form>
+
+   <Alert> ... </Alert>
+
+=========================================================================================
+
+https://react-icons.github.io/react-icons (= 리액트 아이콘 모음집)
+
+npm install react-icons
+
+https://openweathermap.org/     회원가입 ---- 날씨데이터 api 제공
+
+==========================================================================================
+
+class ( mt(top), mb(bottom), ms(left), me(right), mx(좌우), my(상하), m(모든방향)
+mb-0 : 0rem
+mb-1 : 0.25rem (4px)
+mb-2 : 0.5rem (8px)
+mb-3 : 1rem (16px)
+mb-4 : 1.5rem (24px)
+mb-5 : 3rem (48px)
+
+
+=======================================================================
+
+import{ useState, useEffect } from 'react';
+import "bootstrap/dist/css/bootstrap.min.css"
+---- index.js import{ BrowserRouter } from 'react-router-dom'
+import { Routes, route, useNavigate } from 'react-router-dom'
+import axios from 'axios';
+import { Navbar, Nav, NavDropdown, Container, Row, Col } from 'react-bootstrap'
+
+
+=================================================================================
+
+Tailwind CSS
+new Project생성(npx create-react-app project)
+cd project
+1. npm install -D tailwindcss@^3.4.0 ( npm istall -D tailwindcss autoprefixer )
+2. npx tailwindcss init -p
+3. tailwind.config.js파일 -- 템플릿 파일 경로 추가
+   content:[
+     "./public/index.html",
+     "./src/**/*.{js,jsx,ts,tsx}",
+   ]
+4. App.css 또는 index.css
+   @tailwind base;
+   @tailwind components;
+   @tailwind utilities;
+
+
+<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold">~</button>
+
+------------------------------------------------------------------------------------
+
+tailwindcss
+ 설치 --- npm install -D tailwindcss@^3.4.0
+         npx tailwindcss init -p
+         tailwind.config.js 파일 생성 --> content:[입력공간]
+         "./public/index.html",
+         "./src/**/*.{js,jsx,ts,tsx}",  로 추가 입력
+         index.css에
+          @tailwind base;
+          @tailwind components;
+          @tailwind utilities;
+
+--------------------------------------------------------------------------------------
+
+1. 색상 관련 유틸리티
+    배경색 : bg-{color}-{shade}
+    글자색 : text-{color}-{shade}
+    테두리 : border-{color}-{shade}
+     shade : 농도 50~950 ( 밝은 - 진한 )/ 숫자( transparency 0 ~ 100 )
+     {direction} : t, b, l, r, x, y 방향
+        ex ) bg-blue-500/50
+     shadow-, outline-, accent- ( checkbox, radio control color )
+
+2. 레이아웃 유틸리티 ( className )
+    display : block/ inline/ inline-block/ flex/ grid/ hidden
+    positioning : static/ absolute/ relative/ fixed/ sticky
+                  (top-, right-, bottom-, left-)
+    flex/grid : flex-row, flex-col, flex-wrap, 
+                justify-start, justify-center, justify-end, justify-between,
+                item-start, item-center, items-end,
+                content-start / end / center / between / around/evenly /
+                flex-gorw/flex-shrink / flex-none / order-num /
+                gird-cols-num / grid-rows-num / gap-num/gap-x-num / gap-y-num
+                col-span-num / row-span-num / col-start/end-num / row-start / end-num
+                                               
+
+3. Sizing 유틸리티 클래스 
+
+   w-auto ( h-auto )  : 자동 설정
+   w-px    ( h-px )     : 1px 설정
+   w-1/2   ( h-1/2 )    : 부모요소의 50% 
+   w-full   ( h-full )    : 부모요소 100%
+   w-screen ( h-screen )  : viewport 크기
+   w-숫자  ( h-숫자 )  : 숫자( 4px 배수 )
+   min-w-0/full        : min-width:0  / min-width:100%
+   max-w-xs/sm/md/lg/xl/2xl/~/7xl
+             xs(20rem:320px) , sm(24rem:383px) , md(28rem:448px) , lg(32rem:512px)
+             xl(36rem:576px) , 2xl(42rem:672px) , 3xl(48rem:768px) , 4xl(56rem:896px)
+             5xl(64rem:1024px) , 6xl(72rem:1152px) , 7xl(80rem:1280px)
+   max-w-full          : max-width:100% 
+
+
+4. Spacing 유틸리티 클래스 - margin/padding
+    m(p)-숫자 /  m(p)(방향-t,r,b,l,x(left+right),y(top+bottom))-숫자 / 숫자 대체 auto가능
+    [  m-4 , mt-4, mx-4  / p-3 , pb-3 , py-3  / mx-auto   ml-auto ]
+
+
+
+5. Typo
+    글꼴(기본서체) : font-sans, font-serif, font-mono
+     ** public / index.html
+          <link href="구글 폰트 링크" rel="stylesheet">
+     ** tailwind.config.js
+          theme:{
+           extend:{
+            fontFamily:{
+                roboto: ['Roboto', 'sans-serif'],
+                noto: ['Noto Sans KR', 'sans-serif'],
+                open:['Open Sans','sans-serif'],
+            },
+          },
+
+      ----> clssName="font-roboto/noto/open"
+    전체 기본폰트 설정
+       index.css
+       @layer base{
+         body{
+           @apply font-noto
+         }
+        }
+
+     글꼴 크기 : text-크기(line-height)
+                    xs,sm,base,lg,xl,... 9xl
+                    ( 12px, 14, 16(base), 18, 20, 24, 30, 36(4xl), 48, 60, 72, 96, 128 )
+
+     스타일 : italic / not-italic
+
+     글꼴 굵기 : font-
+
+     글꼴 색상 : text-color-shade
+
+     텍스트 정렬 : text-left/center/right/justify
+
+     행간 : leading-none/ tight/ snug/ normal/ relaxed/ loose
+                  ( 1    1.25  1.375    1.5    1.625     2 )
+
+     자간 : tracking-tighter/tight/normal/wide/wider/widest
+                  ( -0.05/ -0.025/  0 / 0.025/ 0.05/ 0.1) em
+
+    Deco : underline/ overline/ line-through/ no-underline
+           ( decoration-solid/ double/ dotted/ dashed,wavy )
+
+     변환 : uppercase/ lowercase/ capitalize/ normal-case
+     
+     TextOverflow : 한줄 ... 처리 truncate
+                    여러줄 줄임 처리 -- line-clamp-숫자
+          ** npm install @tailwindcss/line-clamp
+          ** tailwind.config.js
+                 plugins:[
+                    require('@tailwindcss/line-clamp'),
+                 ]
+
+
+           --> <div className="line-clamp-3">... 3줄까지만 보이고 말줄임표 대체</div>
+
+
+    Border
+      border-0 / border / obrder-width(px) / border-(t,b,l,r,x,y)-n
+      border-color / border-solid/dashed/dotted/double/hidden/none
+
+    Round
+      round-none/sm/./md/lg/xl/2xl/3xl/full
+             (0  2  4 6  8  12 16   24     )
+      ** rounded-(direction)- ~ **
+
+    Shadow Effect
+      shadow-size ( block )
+            sm / . / md / xl / 2xl / inner(안쪽) / none
+      shaodw-color-shade/opacity(%)
+      <div className="shadow-lg shadow-blue-700/50 bg-white">...</div>
+
+      drop-shadow-size: 이미지등에 filter속성적용
+      hover:shadow-~
+      ** tailwind.config.js
+           extend:{
+             boxShadow:{
+               'glow':'0 0 10px rgba(255,255,255,0.5)',
+             }
+           }
+      <div className="shadow-glow">Outer Glow</div>
+
+
+    Transition
+      transition, transition-속성(none, all, ...), duration-시간(1/1000초)
+      ease-속도(linear, in, out, in-out), delay-시간
+      
+
+    Animate
+      animate-none/ spin/ ping/ pulse/ bounce
+
+    ** tailwind.config.js
+         extend:{
+           keyframes:{
+             slide:{
+               '0%':{property:'value'},
+               '100%':{property:'value'},
+             },
+           }
+           animation:{
+             slide:'slide 1s ease-in-out infinite',
+           },
+         },
+        }
+
+       <div className="animate-slide">~</div>
+
+   반응형
+       <className = "~ md:~ lg:~ xl:~ ">
+       sm(640) /md(768) /lg(1024) /xl(1280) /2xl(1536)
+
+
+
+=======================================================================================
+
+ axios ( api 통신 라이브러리(hook) )
+ npm install axios
+
+ import axios from 'axios'
+
+ axios.get('data url')
+      .then(response=> ... response.data ...)
+      .catch(error=> console.error(error) )
+
+===============================================
+
+openweather api -- axios
+  도시 선택( 지역/ 도시 ) -- 날씨 params(
+                               q:`'도시이름',KR`
+  선택한 지역, 도시 지역
+  Router ( Home -> Weather Page )
+                  /weather/:region/:city -- useParams
+      useNavigate
+                  useState, useEffect, axios
+  1. npm install react-router-dom
+     npm install axios
+     npm install styled-components
+
+
+==========================================================================
+
+  useMemo -- 계산을 기억
+   const 함수명 = useMemo(()=>{
+      ...
+      return 계산 결과
+   },[의존성]);
+
+   -- useEffect( API 통신( 버서통신, 이벤트등록/해제 ), local Storage )
+      useMemo ( 필요시 계산 : 숫자계산, 배열 정렬, 필터링, 컴포넌트 랜더링 결과 )
+
+   const double = useMemo( ()=>{  ( count 의존성이 바뀔 때 )
+       console.log('계산중');
+       return count*2;
+   },[count]);
+   --------------------- <div> {double} </div>
+   useEffect ( ()=>{  ( count 의존성 바뀌고 렌더링 이후 실행 )
+       console.log('resule');
+   },[count]);
+
+
+-------------------------------------------------------------------------
+
+   Redux 라이브러리 --> state변수 관리(props 대체)
+
+   1. npm install @reduxjs/toolkit react-redux 설치
+        createSlice - 관리 --> store --> App( createSlice 정의함수 호출 )
+      useSelector( state 호출 )
+      useDispatch ( state 수정요청 )
+
+
+
+   상태 초기값 정의 / 상태변경함수(리듀서함수)정의 / 액션생성함수, 타입 문자열 생성
+
+   createSlice ------------>     store    ------------>      App.js
+   상태 초기값 설정              configureStore로           Provider로 store연결
+   리듀서 함수 정의              리듀서(counter등록)          Counter컴포넌트
+  액션,리듀서 내보내기                                       useSelector->상태읽기
+                                                       useDispatch->액션호출(문자)
+
+ 1. 버튼 클릭
+ 2. dispatch(increment) / dispatch(decrement)
+ 3. 액션 개체 생성 : type{'counter/increment} / type{'counter/decrement}
+ 4. counterReducer 함수 실행
+ 5. state.counter.value값 변경
+ 6. Redux Store - 새로운 상태값 저장
+ 7. useSelecotr{ state => state.counter.value } -> Counter컴포넌트가 새로운 값으로 리랜더링
+
+
+    구버전=>
+    counterStore.js
+      import { createStore } from 'redux';
+      const initialState = { value:0 };
+      const INCREMENT = 'counter/increment';
+      const DECREMENT = 'counter/decrement';
+      function increment(){
+        return { type:INCREMENT };
+      }
+      function decrement(){
+        return { type: DECREMENT };
+      }
+      function counterReducer( state = initialState, action ){
+        switch(action.type){
+          case INCREMENT:return { value: state.value + 1 };
+          case DECREMENT:return { value: state.value - 1 };
+          default:return state;
+        }
+      }
+
+
+function App(){
+ const [ num, seNum ] = useState(0)
+
+ return(
+  <div className="App">
+   <h2> 결과 : {num} </h2>
+   <Controls />
+  </div>
+ )
+}
+-----------------------------------
+function Controls(){
+ return(
+   <div>
+    <button>증가</button><button>감소</button>
+   </div>
+  )
+}
+
+
+
+날씨
+캘린더 + todo ( Planner )
+kiosk
+
+그림판
+music player -
+
+리액트 반응형 기업형
+프로필 페이지
+윈도우 계산기 ( 단일 변환기 )
+번역기
+chart.js 활용 --- vue 기후변화 chart / inbody input
+좌석선택
+지역 음식점 랜덤 추첨( Roulette - 라이브러리 )
+게시판 만들기( 글 쓰기 ) -- server
+쇼밍몰 - 장바구니, 결제
+
+
+=====================================================================
+
+cd project2
+
+npm install lucide-react( 아이콘 컴포넌트 )
+       *** https://lucide.dev/icons/ ***
+npm install swiper
+npm install -D tailwindcss@^3.4.0
+npx tailwindcss init -p
+       tailwind.config.js
+         content:[
+              "./public/index.html",
+              "./src/**/*.{js,jsx,ts,tsx}",
+         ]
+       index.css
+          @tailwind base;
+          @tailwind components;
+          @tailwind utilities;
+
+======================================================================
+
+useRef -- DOM 특정요소(video, input) 지정, 값을 저장, 렌더링 되지 않게 하는 훅 ( 저장된 값이 바뀌어도 )
+
+
+const videoRef = useRef(null)
+
+<video ref ={videoRef} /> -- 스크립트로 제어, 리렌더링방지
+
+
+------------------------------------------------------------------------------------
+
+npm create vite@latest project --template react ( VIte )
+
+
+=====================================================================================
+
+font awesome ( https://fontawesome.com/ )
+
+-------------------------------------------------------------------------------------
+
+html
+
+<link rel="stylesheet" 
+href="https//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<body>
+  <i class="fas fa-camera"></i>
+  fas ( solid style ) / far ( regular style ) / fab ( brand style )
+
+--------------------------------------------------------------------------------------
+
+React
+
+npm install @fortawesome/react-fontawesome
+npm install @fortawesome/fontawesome-svg-core
+npm install @fortawesome/free-solid-svg-icons
+
+->
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faPlusSquare, faTrash, faCheck} from "@fortawesome/free-solid-svg-icons"
+
+
+=======================================================================================
+
+Chart
+
+npm install chart.js react-chartjs-2
+
+Chart --- 메인 차트 객체
+
+RadialLinearScale -- 원형 눈금선 그리는 기능
+
+PointElement -- 데이터 포인트 표시 기능
+
+LineElement -- 선 그리는 기능
+
+Filler -- 영역 색 채우는 기능
+
+Tooltip -- 풍선 도움말 기능
+
+Legend -- 범례 표시기능
+
+=======================================================================================
+
+1.  redux 설치
+
+npm install redux react-redux
+
+npm install @reduxjs/toolkit
+
+​
+
+2. store.js 생성
+
+import { configureStore } from '@reduxjs/toolkit';
+
+​
+
+const store = configureStore({
+
+  reducer:{
+
+    
+
+  }
+
+})
+
+​
+
+export default store;
+
+​
+
+3. index.js 코드 수정
+
+​
+
+import React from 'react';
+
+import ReactDOM from 'react-dom/client';
+
+import './index.css';
+
+import App from './App';
+
+import store from './store';
+
+import { Provider } from 'react-redux';
+
+​
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(  
+
+  <Provider store={store}>
+
+    <App />
+
+  </Provider>
+
+);
+
+​
+======================================================================================
+
+쇼핑몰 - 장바구니 시스템
+
+npx create-react-app shoppingmall
+
+npm install react-router-dom
+npm install styled-components
+npm install react-bootstrap bootstrap
+npm install axios
+npm install @reduxjs/toolkit react-redux
+npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
+
+
+  src
+  store.js
+
+  Components
+  Cart.js
+  CollectionWrap.js
+  Footer.js
+  Header.js
+  InterView.js
+  MainBanner.js
+  ProductItem.js
+  ProductList.js
+  TopBanner.js
+
+  Features
+  cartSlice.js
+
+  Pages
+  CartPage.js
+  Home.js
+  ProductDetail.js
+
+  utils
+  cartUtils.js
+
+
+index.js
+import { BrowserRouter } from 'react-router-dom';
+
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+
+====================================================================================
+
+create-react-app --> vite기반 프로젝트 생성방법
+
+npm create vite@latest 프로젝트명 -- --template react
+cd 프로젝트명
+npm install
+
+npm install react-router-dom
+npm install -D sass ( npm install sass --save-dev )
+
+npm run dev( 미리보기 )
+
+main.jsx -- BrowserRouter
+components -- DirectBtns/EventPage/Header/ MainVisual/NoewMovies/Special(.jsx)
+App.scss 생성 --- App.jsx에서 호출
+                
+
+-----------------------------------------------------------------
+import './styleds.App.scss'
+ -- 변수, 중첩, 믹스인, 템플릿 리터럴, 연산자, 조건if(), 반복for()
+-----------------------------------------------------------------
+변수 -
+$primary:#3498db;
+$basefont:18px;
+
+background-color:$primary
+-----------------------------------------------------------------
+#main_header{}
+#main_header>.innerbox{}
+#main_header>.innerbox>h1{}
+#main_header>.innerbox>nav{}
+중첩 -
+#mian_header{
+  background:#ccc;
+    .innerbox{
+     margin:0 auto;
+     &-sm{} &-md{} &-lg{}
+     h1{
+       a{
+          &:hover{}
+        }
+     }
+     nav{
+ 
+     }
+  }
+}
+--------------------------------------------------------------------
+믹스인 - 
+@mixin flex-center{
+   display:flex; justify-content:center; align-items:center;
+}
+
+.centerbox{
+  @include flex-center;
+  width:300px; height:200px; border:1px solid #333;
+}
+
+----------------------------------------------------------------
+
+npm install node-sass
+vscode --- Live Sass Complier설치 --> watch sass ( css로 변환 )
+
+
+=======================================================================
+
+리액트 Tap 라이브러리
+
+1. 설치 : npm install react-tabs
+2. 스타일 호출 : import "react-tabs/style/react-tabs.css";
+
+              import { Tabs, TabList, Tab, TabPanel } from 'react-tabs'
+3. Tabs ( 전체 탭 컨테이너 )
+    TabList ( 탭 버튼 컨테이너 )
+      Tab ( 탭 버튼 )
+    TabPanel ( 탭 해당 컨텐츠 )
+
+ex)
+      <Tabs>
+        <TabList>
+          <Tab>탭1</Tab>
+          <Tab>탭2</Tab>
+          <Tab>탭3</Tab>
+        </TabList>
+        <TabPanel>
+          <h2>탭1 제목</h2>
+          <p>첫번 째 탭 내용공간</p>
+        </TabPanel>
+        <TabPanel>
+          <h2>탭2 제목</h2>
+          <p>두번 째 탭 내용공간</p>
+        </TabPanel>
+        <TabPanel>
+          <h2>탭3 제목</h2>
+          <p>세번 째 탭 내용공간</p>
+        </TabPanel>
+      </Tabs>
+
+
+
+** 객체 모든 속성의 키들로 배열 반환 Object.keys()
+   const obj = {
+     food:'단백질',
+     clothes:'반팔티',
+     hobby:'운동'
+}
+
+ Object.keys(obj) --> [ 'food', 'clothes', 'hobby' ]
+
+** 객체 키, 값을 [key, value] 형태의 배열 반환 Object.entries()
+
+   const obj = {
+     food:['단백질','닭가슴살','계란2개'],
+     clothes:['반팔티,'반바지','목장갑'],
+     hobby:['운동','카페가기','금연']
+}
+
+ Object.entries(obj) 
+  -->[
+      [ 'food',['단백질,닭가슴살,계란2개'] ],
+      [ 'clothes', ['반팔티','반바지','목장갑'] ],
+      [ 'hobby', ['운동','카페가기','금연'] ]
+     ]
+
+=====================================================================
+
+utils -- cartUtils.js -- 아이템 유효, 계산
+  유효검사 -> throw new Error('에러메세지') : 강제로 에러 발생
+
+features -- cartSlice.js -- redux 상태 관리 ( 장바구니 )
+Pages components ==> ProductDetail.js
+                     CartPage.js
+
+
+=====================================================================
+
+useCallback -- 함수  ( 재 정의 방지 ) -- 성능 최적화 , 자식 요소(comp)에 props로 함수 전달시     
+
+​
+
+useMemo -- 값 기억, 의존성이 바뀔때만 계산 , 반복문 적합
+
+​
+
+useLocation -- 현재 URL 정보 가져오기 ( 라우터 전용 ) - 경로,검색,상태 등 관련정보 확인 
+
+                       http://www.abs.com/product?name=name1&price=2000
+
+                       경로 : /product     ( pathname/ search / state )
+
+const pdt-1{
+  id:1,
+  name:'aaa',
+  price:'3000,
+  quantity:1 ---->3 / null ---> quantity:3
+ }
+  {...pdt-1,quantity}   {...pdt-1, quantity:3}
+
+
+======================================================================
+
+
+
+--------------------------------
+
+spring hook 설치 -- 애니메이션
+npm install react-spring
+( useSpring )
+( useTransition )
+( useTrail )
+
+
+=======================================================================
+
+profile page
+
+1.
+
+
+
+
+
+sass /gsap/ lenis(부드러운 스크롤 동작)
+
+
+npm create vite@latest 프로젝트명 -- --template react
+cd 프로젝트명
+npm install
+미리보기 npm run dev ctrl + 'click'
+
+npm install sass
+npm install gsap
+npm install @studio-freight/lenis
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

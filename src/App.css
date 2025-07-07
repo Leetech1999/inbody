@@ -1,38 +1,130 @@
+body,
+html,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: linear-gradient(to bottom right, #fef9f4, #fffdf8);
+  font-family: "Pretendard", sans-serif;
+}
+
 .App {
+  width: 393px;
+  height: 852px;
+  margin: 24px auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.App h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.input-row {
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-row label {
+  font-size: 14px;
+  color: #444;
+}
+
+.input-row input {
+  width: 110px;
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  transition: all 0.2s ease-in-out;
+  background-color: #fafafa;
+}
+
+.input-row input:focus {
+  outline: none;
+  border-color: #ff8000;
+  background-color: #fff;
+}
+
+.save-button {
+  margin-top: 16px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  background-color: #ff8000;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 2px 6px rgba(255, 128, 0, 0.4);
+}
+
+.save-button:hover {
+  background-color: #e66f00;
+}
+
+.save-message {
+  margin-top: 10px;
+  color: #ff8000;
+  font-size: 14px;
+  font-weight: bold;
+  opacity: 1;
+  transition: opacity 1.2s ease-out;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.save-message.fade-out {
+  opacity: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.tab-button {
+  padding: 6px 14px;
+  font-size: 13px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+  color: #444;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.tab-button.active {
+  border-color: #ff8000;
+  background-color: #ff8000;
+  color: #fff;
 }
 
-.App-link {
-  color: #61dafb;
+.select-label {
+  font-size: 14px;
+  color: #444;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.select-date {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 8px;
+  background-color: #fff;
+  transition: border 0.2s ease-in-out;
+}
+
+.select-date:focus {
+  outline: none;
+  border-color: #ff8000;
 }
