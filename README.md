@@ -13,7 +13,7 @@
 React, Redux, Chart.js, CSS Modules
 
 ## 데모  
-[배포 페이지 링크](https://github.com/Leetech1999/inbody)  <!-- 실제 링크 확인 필요 -->
+[배포 페이지 링크](https://leetech1999.github.io/inbody/)  <!-- 실제 링크 확인 필요 -->
 
 ## 설치 및 실행 방법  
 ```bash
